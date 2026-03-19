@@ -2,6 +2,7 @@ package sit.tuvarna.bg.authservice.blacklistedToken.scheduler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import sit.tuvarna.bg.authservice.blacklistedToken.repository.BlacklistedTokenRepository;
@@ -10,6 +11,8 @@ import java.time.Instant;
 
 @Component
 @Slf4j
+@ConditionalOnProperty(name = "blacklist.cleanup.enabled", havingValue = "true", matchIfMissing = true)
+
 public class BlacklistCleanupTask {
 
     private final BlacklistedTokenRepository blacklistedTokenRepository;
