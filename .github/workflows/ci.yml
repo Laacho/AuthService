@@ -20,13 +20,16 @@ jobs:
             distribution: 'temurin'
             cache: maven
 
+      - name: Install Maven 3.9.6
+        run: |
+          wget https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.6/apache-maven-3.9.6-bin.tar.gz
+          tar -xzf apache-maven-3.9.6-bin.tar.gz
+          echo "$PWD/apache-maven-3.9.6/bin" >> $GITHUB_PATH
+
       - name: Lint Dockerfile
         uses: hadolint/hadolint-action@v3.1.0
         with:
             dockerfile: Dockerfile
 
-      - name: Make mvnw executable
-        run: chmod +x mvnw
-
       - name: Build and test
-        run: ./mvnw -B clean verify
+        run: mvn -B clean verify
