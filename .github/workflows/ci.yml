@@ -18,23 +18,10 @@ jobs:
         with:
             java-version: '21'
             distribution: 'temurin'
+            cache: maven
 
-      - name: Install Maven 3.9.9
-        run: |
-         wget -q https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.9/apache-maven-3.9.9-bin.tar.gz
-         tar -xzf apache-maven-3.9.9-bin.tar.gz
-         echo "$PWD/apache-maven-3.9.9/bin" >> $GITHUB_PATH
 
-      - name: Debug Java and Maven
-        run: |
-          echo "=== PATH ==="
-          echo "$PATH"
-          echo "=== which/java & version ==="
-          which java || true
-          java -version || true
-          echo "=== which/mvn & version ==="
-          which mvn || true
-          mvn -version || true
+
 
       - name: Lint Dockerfile
         uses: hadolint/hadolint-action@v3.1.0
