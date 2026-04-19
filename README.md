@@ -31,7 +31,7 @@ Base path: `/api/v1/auth`
 
 | Method | Endpoint     | Description                              |
 | ------ | ------------ | ---------------------------------------- |
-| POST   | `/issue`     | Issue access + refresh tokens (internal) |
+| POST   | `/issue`     | public                                   |
 | POST   | `/validate`  | Validate access token                    |
 | POST   | `/refresh`   | Generate new token pair                  |
 | POST   | `/blacklist` | Revoke (blacklist) refresh token         |
@@ -93,9 +93,8 @@ Base path: `/api/v1/auth`
 
 ## 🔒 Security Notes
 
-* `/issue` requires an internal API key
+* `/issue`,`/validate` and `/refresh` are public
 * `/blacklist` requires a valid Bearer access token
-* `/validate` and `/refresh` are public
 * Refresh tokens can be invalidated via blacklist
 
 ---
