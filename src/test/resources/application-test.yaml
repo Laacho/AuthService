@@ -1,0 +1,42 @@
+# Test profile for auth-service
+
+spring:
+  application:
+    name: auth-service-test
+
+  datasource:
+    url: jdbc:h2:mem:authdb;DB_CLOSE_DELAY=-1
+    username: sa
+    password: sa
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+
+# JWT test values
+jwt:
+  secret: test-secret-key-1234567890
+  refresh-token-expiration: 3600000
+  access-token-expiration: 600000
+  issuer: TestIssuer
+
+# Logging
+logging:
+  level:
+    root: INFO
+    org.springframework.security: INFO
+    sit.tuvarna.bg.authservice: DEBUG
+
+# Feign client test URL (fixes the malformed URL error)
+services:
+  user:
+    url: http://localhost:8082
+
+# TOTP
+security:
+  totp:
+    issuer: TestAuthService
